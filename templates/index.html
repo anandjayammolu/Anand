@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panchshil Hardware & Interior</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      <a href="{{ url_for('index') }}">
+        <img src="{{ url_for('static', filename='image/PHS LOGO.jpg') }}" alt="Panchshil Hardware Logo"
+          style="height: 80px; cursor: pointer;">
+      </a>
+      <div>
+        <a href="#">Home</a>
+        <a href="#services">Services</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="https://web.whatsapp.com/" target="_blank" class="nav-btn" style="text-decoration: none;">
+          Get in Touch
+        </a>
+        <a class="cart-icon" onclick="openCart()">
+          🛒 <span id="cart-count">0</span></a>
+
+      </div>
+
+
+      </div>
+    </nav>
+  </header>
+
+  <!-- HOME PAGE SLIDER -->
+  <div class="home-slider" id="home">
+
+    <div class="home-slide active" style="background-image: url('/static/image/home1.jpg');">
+      <div class="home-content">
+        <h1>Complete Hardware & Interior Solutions</h1>
+        <p>Premium Quality • Trusted Service</p>
+        <button id="getQuoteBtn" class="hero-btn">Get a Free Quote</button>
+      </div>
+    </div>
+
+    <div class="home-slide" style="background-image: url('/static/image/home2.jpg');">
+      <div class="home-content">
+        <h1>Modern Interior Designs</h1>
+        <p>Kitchen • Wardrobe • Furniture</p>
+      </div>
+    </div>
+
+    <div class="home-slide" style="background-image: url('/static/image/home3.jpg');">
+      <div class="home-content">
+        <h1>Quality Hardware Products</h1>
+        <p>Handles • Railings • Accessories</p>
+      </div>
+    </div>
+
+  </div>
+  <!-- HOME PAGE CARD -->
+  <div id="cartModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeCart()">&times;</span>
+      <h2>Your Cart</h2>
+
+      <ul id="cartItems"></ul>
+
+      <h3>Total: ₹<span id="cartTotal">0</span></h3>
+      <button onclick="checkout()">Checkout</button>
+    </div>
+  </div>
+
+  <section id="products">
+    <h2>Our Products</h2><br>
+
+    <div class="product-grid">
+
+      <div class="product-card">
+        <img src="/static/image/product1.jpg">
+        <h3>Door Handles</h3>
+        <p>₹1,200</p>
+        <button onclick="addToCart('Door Handles',1200)">Add to Cart</button>
+        <button class="buy-btn" onclick="buyNow('Door Handles',1200)">Buy Now</button>
+      </div>
+
+      <div class="product-card">
+        <img src="/static/image/product2.jpg">
+        <h3>Railing</h3>
+        <p>₹2,500</p>
+        <button onclick="addToCart('Railing',2500)">Add to Cart</button>
+        <button class="buy-btn" onclick="buyNow('Railing',2500)">Buy Now</button>
+      </div>
+
+      <div class="product-card">
+        <img src="/static/image/product3.jpg">
+        <h3>Kitchen Accessories</h3>
+        <p>₹3,000</p>
+        <button onclick="addToCart('Kitchen Accessories',3000)">Add to Cart</button>
+        <button class="buy-btn" onclick="buyNow('Kitchen Accessories',3000)">Buy Now</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ORIGINAL SLIDES -->
+  <section id="services">
+    <h2>Our Services</h2><br>
+
+    <div class="slider">
+      <div class="slider-track">
+
+
+        <div class="slide"><img src="{{ url_for('static', filename='image/product1.jpg') }}">
+          <h3>Door Handles</h3>
+        </div>
+        <div class="slide"><img src="{{ url_for('static', filename='image/product2.jpg') }}">
+          <h3>Railing</h3>
+        </div>
+        <div class="slide"><img src="{{ url_for('static', filename='image/product3.jpg') }}">
+          <h3>Kitchen Accessories</h3>
+        </div>
+        <div class="slide"><img src="{{ url_for('static', filename='image/product4.jpg') }}">
+          <h3>Wardrobe</h3>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <h2>Our Products</h2><br>
+
+    <div class="slider">
+      <div class="slider-track">
+        <!-- DUPLICATE SLIDES (REQUIRED) -->
+        <div class="slide"><img src="{{ url_for('static', filename='image/product1.jpg') }}">
+          <h3>Door Handles</h3>
+        </div>
+        <div class="slide"><img src="{{ url_for('static', filename='image/product2.jpg') }}">
+          <h3>Railing</h3>
+        </div>
+        <div class="slide"><img src="{{ url_for('static', filename='image/product3.jpg') }}">
+          <h3>Kitchen Accessories</h3>
+        </div>
+        <div class="slide"><img src="{{ url_for('static', filename='image/product4.jpg') }}">
+          <h3>Wardrobe</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="awards">
+    <h2>Our Awards & Achievements</h2>
+
+    <div class="awards-container">
+
+      <div class="award-card">
+        <img src="/static/image/award1.jpg" alt="Award">
+        <h4>Best Hardware Supplier</h4>
+        <p>Hyderabad • 2023</p>
+      </div>
+
+      <div class="award-card">
+        <img src="/static/image/award1.jpg" alt="Award">
+        <h4>Excellence in Interior Solutions</h4>
+        <p>Telangana • 2024</p>
+      </div>
+
+      <div class="award-card">
+        <img src="/static/image/award1.jpg" alt="Award">
+        <h4>Trusted Brand Award</h4>
+        <p>Customer Choice</p>
+      </div>
+
+    </div>
+  </section>
+  <!-- What Our Clients Say (REQUIRED) -->
+
+
+  <section id="reviews">
+    <h2 style="text-align: center;">What Our Clients Say</h2><br>
+
+
+    <div class="single-review-card">
+
+      <div class="review active">
+        <img src="/static/image/client1.jpg" alt="Client">
+        <p>“Excellent quality hardware and very professional service.”</p>
+        <h4>Ramesh Kumar</h4>
+        <span>⭐⭐⭐⭐⭐</span>
+      </div>
+
+      <div class="review">
+        <img src="/static/image/client2.jpg" alt="Client">
+        <p>“Best place for interior accessories. Quality products.”</p>
+        <h4>Sneha Reddy</h4>
+        <span>⭐⭐⭐⭐⭐</span>
+      </div>
+
+      <div class="review">
+        <img src="/static/image/client3.jpg" alt="Client">
+        <p>“Very happy with the wardrobe fittings and timely delivery.”</p>
+        <h4>Arjun Mehta</h4>
+        <span>⭐⭐⭐⭐⭐</span>
+      </div>
+
+    </div>
+  </section>
+
+
+<footer class="footer-ligna">
+
+  <div class="footer-container">
+
+    <!-- LEFT -->
+    <div class="footer-about">
+      <img src="/static/image/PHS LOGO.jpg" alt="Panchshil Logo" class="footer-logo">
+
+      <p>
+        Panchshil Hardware combines premium materials with expert craftsmanship
+        to create distinguished interior solutions. Designed for modern,
+        minimalist homes.
+      </p>
+    </div>
+
+    <!-- CENTER -->
+    <div class="footer-links">
+      <h4>IMPORTANT LINKS</h4>
+      <ul>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="footer-contact">
+      <h4>CONTACT INFORMATION</h4>
+      <p><strong>Phone:</strong> +91 8390909396</p>
+      <p><strong>Email:</strong> infohyb@panchshilhardware.com</p>
+      <p>
+        <strong>Address:</strong><br>
+        Jubilee Hills, Hyderabad,<br>
+        Telangana – 500033
+      </p>
+    </div>
+
+  </div>
+
+  <!-- LINE -->
+  <div class="footer-divider"></div>
+
+  <!-- SOCIAL -->
+  <div class="footer-social">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+
+  <!-- COPYRIGHT -->
+  <p class="footer-copy">
+    © 2025 Panchshil Hardware & Interior. All rights reserved.
+  </p>
+
+</footer>
+
+
+
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Get a Quote</h2>
+      <p>Call us at: 📞 +91 8390909396</p>
+
+      <form action="{{ url_for('contact') }}" method="post">
+        <!-- ✅ REQUIRED CSRF TOKEN -->
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="mobile">Mobile:</label>
+        <input type="tel" id="mobile" name="mobile" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="scrollToTop"
+    style="position: fixed; bottom: 20px; right: 20px; background: #2563eb; color: white; border: none; border-radius: 50%; width: 50px; height: 50px; display: none; justify-content: center; align-items: center; cursor: pointer; font-size: 24px;">
+    ↑</div>
+
+  <script>
+    window.addEventListener('scroll', function () {
+      var scrollToTopBtn = document.getElementById('scrollToTop');
+      if (window.pageYOffset > 100) {
+        scrollToTopBtn.style.display = 'flex';
+      } else {
+        scrollToTopBtn.style.display = 'none';
+      }
+    });
+
+    document.getElementById('scrollToTop').addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.getElementById('getQuoteBtn').addEventListener('click', function () {
+      document.getElementById('contactModal').style.display = 'block';
+    });
+
+    document.getElementById('getInTouchBtn').addEventListener('click', function () {
+      fetch('/log_click', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'button=get_in_touch'
+      });
+      document.getElementById('contactModal').style.display = 'block';
+    });
+
+    document.getElementsByClassName('close')[0].addEventListener('click', function () {
+      document.getElementById('contactModal').style.display = 'none';
+    });
+
+    window.addEventListener('click', function (event) {
+      if (event.target == document.getElementById('contactModal')) {
+        document.getElementById('contactModal').style.display = 'none';
+      }
+    });
+  </script>
+
+  <script>
+    let slides = document.querySelectorAll('.home-slide');
+    let index = 0;
+    let interval;
+
+    function showSlide(i) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      slides[i].classList.add('active');
+    }
+
+    function startSlider() {
+      interval = setInterval(() => {
+        index = (index + 1) % slides.length;
+        showSlide(index);
+      }, 4000);
+    }
+
+    function stopSlider() {
+      clearInterval(interval);
+    }
+
+    startSlider();
+
+    document.querySelector('.home-slider').addEventListener('mouseenter', stopSlider);
+    document.querySelector('.home-slider').addEventListener('mouseleave', startSlider);
+  </script>
+  <!-- REVIEW SLIDES (REQUIRED) -->
+
+  <script>
+    let reviews = document.querySelectorAll('.single-review-card .review');
+    let currentReview = 0;
+
+    setInterval(() => {
+      reviews[currentReview].classList.remove('active');
+      currentReview = (currentReview + 1) % reviews.length;
+      reviews[currentReview].classList.add('active');
+    }, 4000);
+  </script>
+
+  <script>
+    let cart = [];
+    let total = 0;
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      total += price;
+      document.getElementById('cart-count').innerText = cart.length;
+    }
+
+    function openCart() {
+      document.getElementById('cartModal').style.display = 'block';
+      const list = document.getElementById('cartItems');
+      list.innerHTML = '';
+
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.innerText = `${item.name} - ₹${item.price}`;
+        list.appendChild(li);
+      });
+
+      document.getElementById('cartTotal').innerText = total;
+    }
+
+    function closeCart() {
+      document.getElementById('cartModal').style.display = 'none';
+    }
+
+    function buyNow(name, price) {
+      alert(`Buying ${name} for ₹${price}`);
+    }
+
+    function checkout() {
+      alert('Checkout coming soon!');
+    }
+  </script>
+</body>
+
+</html>
